@@ -33,11 +33,11 @@ const MainNav = ({ className, scrolled, ...props }: MainNavProps) => {
       label: "About",
       active: pathname === `/about`,
     },
-    {
-      href: "/contact",
-      label: "Contact",
-      active: pathname === `/contact`,
-    },
+    // {
+    //   href: "/contact",
+    //   label: "Contact",
+    //   active: pathname === `/contact`,
+    // },
   ];
 
   return (

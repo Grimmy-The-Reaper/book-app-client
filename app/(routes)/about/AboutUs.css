@@ -1,0 +1,39 @@
+/* Full-page container with a transparent background */
+.about-us-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+    backdrop-filter: blur(8px); /* Blurred background */
+    padding: 20px; /* Add some padding for smaller screens */
+    box-sizing: border-box;
+  }
+  
+  /* Centered content box */
+  .about-us-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 40px; /* Add some padding inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    max-width: 600px; /* Limit maximum width */
+    width: auto; /* Automatically adjusts based on text content */
+    box-sizing: border-box; /* Include padding in width/height */
+  }
+  
+  /* Headings and paragraphs inside the content box */
+  .about-us-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333; /* Dark text color */
+  }
+  
+  .about-us-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555; /* Slightly lighter text color */
+    margin-bottom: 10px;
+  }
+  

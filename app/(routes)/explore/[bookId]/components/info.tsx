@@ -111,6 +111,7 @@ import {
   Notebook,
   ShoppingCart,
 } from "lucide-react";
+import { getGenreColor } from "@/lib/genreColors";
 import { useState } from "react";
 
 interface InfoProps {
@@ -155,19 +156,48 @@ const Info = ({ book }: InfoProps) => {
 
       {/* Author & Genre */}
       <div className="w-full flex items-center justify-start gap-2 flex-wrap px-2 mt-8">
+        {/* Author */}
         {book.author && (
           <div className="rounded-md bg-blue-500/10 px-3 py-2 text-base font-semibold capitalize flex items-center gap-2">
             <CircleUserRound className="w-5 h-5" />
             {book.author}
           </div>
         )}
-        {book.genre && (
-          <div className="rounded-md bg-yellow-500/10 px-3 py-2 text-base font-semibold capitalize flex items-center gap-2">
-            <Notebook className="w-5 h-5" />
-            {book.genre}
-          </div>
-        )}
+
+        {/* Genres */}
+        {Array.isArray(book.genre)
+          ? book.genre.map((singleGenre, index) => {
+              const genreColor = getGenreColor(singleGenre); // Get color for the genre
+              return (
+                <div
+                  key={index}
+                  style={{ backgroundColor: `${genreColor}1A` }} // Lighter background
+                  className="rounded-md px-3 py-2 text-base font-semibold capitalize flex items-center gap-2"
+                >
+                  <Notebook
+                    className="w-5 h-5"
+                    style={{ color: genreColor }} // Darker icon color
+                  />
+                  {singleGenre}
+                </div>
+              );
+            })
+          : book.genre && (
+              <div
+                style={{
+                  backgroundColor: `${getGenreColor(book.genre)}1A`,
+                }}
+                className="rounded-md px-3 py-2 text-base font-semibold capitalize flex items-center gap-2"
+              >
+                <Notebook
+                  className="w-5 h-5"
+                  style={{ color: getGenreColor(book.genre) }}
+                />
+                {book.genre}
+              </div>
+            )}
       </div>
+
 
       {/* Price and Quantity */}
       <div className="w-full grid grid-cols-4 my-12">
