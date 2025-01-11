@@ -12,9 +12,9 @@ export const revalidate = 0;
 
 interface ExploreProps {
   searchParams: {
-    genre?: string;
+    genre?: string | string[];
     isFeatured?: boolean;
-    author?: string;
+    author?: string | string[];
   };
 }
 
@@ -22,10 +22,11 @@ const ExplorePage = async ({ searchParams }: ExploreProps) => {
   const authors = await getAuthors();
   const genres = await getGenres();
   const books = await getBooks({
-    genre: searchParams?.genre,
+    genre: Array.isArray(searchParams?.genre) ? searchParams.genre.join(",") : searchParams?.genre,
     isFeatured: searchParams?.isFeatured,
-    author: searchParams?.author,
+    author: Array.isArray(searchParams?.author) ? searchParams.author.join(",") : searchParams?.author,
   });
+  console.log(books,"book data");
   return (
     <Container className="px-4 md:px-12">
       <div className="grid grid-cols-1 md:grid-cols-12 py-12 gap-2">

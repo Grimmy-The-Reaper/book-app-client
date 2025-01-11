@@ -13,6 +13,7 @@ const OrdersPage = async () => {
   const { userId } = auth();
 
   const formattedOrders = orders.filter((item) => item.userId === userId);
+  console.log(formattedOrders,"formatted orders")
 
   return (
     <Container className="px-4 md:px-12 my-12 bg-white py-12 min-h-[80vh]">
