@@ -26,7 +26,6 @@ const ExplorePage = async ({ searchParams }: ExploreProps) => {
     isFeatured: searchParams?.isFeatured,
     author: Array.isArray(searchParams?.author) ? searchParams.author.join(",") : searchParams?.author,
   });
-  console.log(books,"book data");
   return (
     <Container className="px-4 md:px-12">
       <div className="grid grid-cols-1 md:grid-cols-12 py-12 gap-2">

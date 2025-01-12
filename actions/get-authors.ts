@@ -2,7 +2,7 @@ import { Author } from "@/types-db";
 
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/authors`;
 
-const getAuthors = async (): Promise<Author[]> => {
+const getAuthors = async (): Promise<any> => {
   const res = await fetch(URL);
 
   return res.json();

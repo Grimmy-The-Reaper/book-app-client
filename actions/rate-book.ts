@@ -41,7 +41,6 @@ export const rateBook = async ({ bookId, rating, userId }: RateBookParams) => {
    
 
   } catch (error:any) {
-    console.log(error);
     throw error?.message;
   }
 }; 
@@ -78,7 +77,6 @@ export const getRatingBook = async ({ bookId,  userId  }: any) => {
    
 
   } catch (error:any) {
-    console.log(error);
     throw error?.message;
   }
 }; 

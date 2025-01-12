@@ -13,7 +13,6 @@ interface CartitemProps {
 }
 
 const CartItem = ({ item }: CartitemProps) => {
-  console.log(item,"--,cart item")
   const [qty, setQty] = useState(item.qty ?? 1);
 
   const cart = useCart();

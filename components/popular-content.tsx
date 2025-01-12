@@ -15,6 +15,7 @@ interface PopularContentProps {
 
 export const PopularContent = ({ data }: PopularContentProps) => {
   const [isLiked, setisLiked] = useState(false);
+  console.log(data,"data")
 
   const cart = useCart();
 
@@ -24,7 +25,6 @@ export const PopularContent = ({ data }: PopularContentProps) => {
 
   const IsLikedIcon = isLiked ? Heart : HeartCrack;
 
-  console.log(data)
 
   return (
     <Card

@@ -11,6 +11,7 @@ export const revalidate = 0;
 
 const HomePage = async () => {
   const books = await getBooks({ isFeatured: true });
+  console.log(books,"books")
   // console.log("Books data:", books);
 
 

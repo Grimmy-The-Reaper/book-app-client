@@ -11,12 +11,13 @@ import {
 } from "lucide-react";
 import { getGenreColor } from "@/lib/genreColors";
 import { useState } from "react";
+import Link from "next/link";
 
 interface InfoProps {
   book: Books;
 }
 
-const Info = ({ book }: InfoProps) => {
+const Info = ({ book }: any) => {
   const [qty, setQty] = useState(1);
   const cart = useCart();
 
@@ -45,10 +46,9 @@ const Info = ({ book }: InfoProps) => {
       {/* Description */}
       <div className="mt-3 flex items-end justify-between">
         <p className="text-base text-left text-neutral-600">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat,
-          consequatur aut dolorum, exercitationem dicta totam ipsa inventore
-          odio ducimus, odit ipsam natus eveniet commodi consectetur harum in
-          deserunt sed dolorem!
+          {book.information
+            ? book.information
+            : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, consequatur aut dolorum, exercitationem dicta totam ipsa inventore odio ducimus, odit ipsam natus eveniet commodi consectetur harum in deserunt sed dolorem!"}
         </p>
       </div>
 
@@ -57,43 +57,49 @@ const Info = ({ book }: InfoProps) => {
         {/* Author */}
         {Array.isArray(book.author) ? (
           book.author.map((author, index) => (
-            <div
+            <Link
               key={index}
+              href={`/author/${author}`}
               className="rounded-md bg-blue-500/10 px-3 py-2 text-base font-semibold capitalize flex items-center gap-2"
             >
               <CircleUserRound className="w-5 h-5" />
               {author}
-            </div>
+            </Link>
           ))
         ) : (
           book.author && (
-            <div className="rounded-md bg-blue-500/10 px-3 py-2 text-base font-semibold capitalize flex items-center gap-2">
+            <Link
+              href={`/author/${book.author}`}
+              className="rounded-md bg-blue-500/10 px-3 py-2 text-base font-semibold capitalize flex items-center gap-2"
+            >
               <CircleUserRound className="w-5 h-5" />
               {book.author}
-            </div>
+            </Link>
           )
         )}
 
         {/* Genres */}
         {Array.isArray(book.genre)
           ? book.genre.map((singleGenre, index) => {
-              const genreColor = getGenreColor(singleGenre); // Get color for the genre
+              const genreColor = getGenreColor(singleGenre);
               return (
-                <div
+                <Link
                   key={index}
-                  style={{ backgroundColor: `${genreColor}1A` }} // Lighter background
+                  href={`/genre/${singleGenre}`}
+                  style={{ backgroundColor: `${genreColor}1A` }}
                   className="rounded-md px-3 py-2 text-base font-semibold capitalize flex items-center gap-2"
                 >
                   <Notebook
                     className="w-5 h-5"
-                    style={{ color: genreColor }} // Darker icon color
+                    style={{ color: genreColor }}
                   />
                   {singleGenre}
-                </div>
+                </Link>
               );
             })
           : book.genre && (
-              <div
+              <Link
+                href={`/genre/${book.genre}`}
                 style={{
                   backgroundColor: `${getGenreColor(book.genre)}1A`,
                 }}
@@ -104,10 +110,9 @@ const Info = ({ book }: InfoProps) => {
                   style={{ color: getGenreColor(book.genre) }}
                 />
                 {book.genre}
-              </div>
+              </Link>
             )}
       </div>
-
 
       {/* Price and Quantity */}
       <div className="w-full grid grid-cols-4 my-12">
@@ -146,7 +151,6 @@ const Info = ({ book }: InfoProps) => {
               className="w-16 h-8 border border-gray-300 rounded-md px-2 text-center text-black focus:outline-none focus:ring-2 focus:ring-hero"
               placeholder="Qty"
             />
-
           </div>
         </div>
       </div>

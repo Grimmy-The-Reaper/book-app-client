@@ -7,6 +7,7 @@ import Link from "next/link";
 import Gallery from "./components/gallery/gallery";
 import Info from "./components/info";
 import SuggestedList from "./components/suggested-lists";
+import { Star } from "lucide-react";
 
 interface BookPageProps {
   params: {
@@ -14,10 +15,26 @@ interface BookPageProps {
   };
 }
 
-const BookPage = async ({ params }: BookPageProps) => {
+const BookPage = async ({ params }: any) => {
   const book = await getBook(params.bookId);
-  console.log(book,"book")
-  const suggestedBooks = await getBooks({ author: book?.author    });
+
+  console.log(book, "params");
+
+  const suggestedBooks = await getBooks({ author: book?.author });
+
+  const renderStars = (averageRating: number) => {
+    const totalStars = 5;
+    const stars = [];
+    for (let i = 0; i < totalStars; i++) {
+      stars.push(
+        <Star
+          key={i}
+          className={`w-5 h-5 ${i < averageRating ? "text-yellow-600 fill-current" : "text-gray-300"}`}
+        />
+      );
+    }
+    return stars;
+  };
 
   return (
     <div>
@@ -43,6 +60,9 @@ const BookPage = async ({ params }: BookPageProps) => {
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
               {/* Info Section */}
               <Info book={book} />
+              <div className="flex items-center mt-4">
+                {renderStars(book.averageRating || 0)}
+              </div>
             </div>
           </div>
 

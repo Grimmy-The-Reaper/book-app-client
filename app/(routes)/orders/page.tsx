@@ -10,7 +10,6 @@ export const revalidate = 0;
 
 const OrdersPage = async () => {
   const orders = await getOrders();
-  console.log(orders,"orders")
   const { userId } = auth();
 
   const formattedOrders = orders?.filter((item) => item.userId === userId);

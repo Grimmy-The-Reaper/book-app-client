@@ -14,7 +14,6 @@ interface OrderItemProps {
 }
 
 const OrderItem = ({ order }: OrderItemProps) => {
-  console.log(order);
   const [ratings, setRatings] = useState<{ [key: string]: number }>({});
   const [hoveredStars, setHoveredStars] = useState<{ [key: string]: number }>({});
 
@@ -79,7 +78,6 @@ const OrderItem = ({ order }: OrderItemProps) => {
     }));
   };
 
-  console.log(order.orderItems?.[0]?.id)
 
 
   return (

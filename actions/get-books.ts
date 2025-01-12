@@ -87,7 +87,6 @@ const getBooks = async (query: any): Promise<Books[]> => {
     },
   });
 
-  console.log(url,"url")
 
   // console.log("API URL:", URL);          // Log to ensure environment variable is set
   // console.log("Formatted URL:", url);     // Log the final URL
