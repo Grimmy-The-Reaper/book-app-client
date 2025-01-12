@@ -1,6 +1,7 @@
 import getAuthors from "@/actions/get-authors";
 import AuthorInfo from "./authorInfo";
 import getBooks from "@/actions/get-books";
+import { fetchBillboard } from "./actions";
 
 export default async function AuthorPage({
   params
@@ -8,18 +9,21 @@ export default async function AuthorPage({
   params: { authorName: string }
 }) {
 
+const decodedAuthorName = params.authorName ? decodeURIComponent(params.authorName) : '';
+
   const authors = await getAuthors();
-  console.log(authors,"authors")
-  const author = authors.find((author: any) => author.name === params.authorName);
-  console.log(author,"author")
-  const books = await getBooks({ author: author?.name });
+  const author = authors.find((author: any) => author.name === decodedAuthorName);
+  console.log(author,"author is here")
+  const books = await getBooks({ author: decodedAuthorName });
+  const getBillboard= await fetchBillboard({billboardId:author?.billboardId});
+  
 
 
 
 
   return (
     <div className="px-4 py-8 sm:px-6 lg:px-8">
-      <AuthorInfo authorName={params.authorName} books={books} author={author} />
+      <AuthorInfo authorName={decodedAuthorName} books={books} author={author} billboard={getBillboard} />
     </div>
   );
 }
