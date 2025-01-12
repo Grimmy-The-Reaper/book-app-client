@@ -10,10 +10,10 @@ export const revalidate = 0;
 
 const OrdersPage = async () => {
   const orders = await getOrders();
+  console.log(orders,"orders")
   const { userId } = auth();
 
-  const formattedOrders = orders.filter((item) => item.userId === userId);
-  console.log(formattedOrders,"formatted orders")
+  const formattedOrders = orders?.filter((item) => item.userId === userId);
 
   return (
     <Container className="px-4 md:px-12 my-12 bg-white py-12 min-h-[80vh]">

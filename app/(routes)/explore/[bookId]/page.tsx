@@ -16,7 +16,8 @@ interface BookPageProps {
 
 const BookPage = async ({ params }: BookPageProps) => {
   const book = await getBook(params.bookId);
-  const suggestedBooks = await getBooks({ author: book?.author  });
+  console.log(book,"book")
+  const suggestedBooks = await getBooks({ author: book?.author    });
 
   return (
     <div>

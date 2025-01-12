@@ -77,7 +77,7 @@ interface Query {
   author?: string;
 }
 
-const getBooks = async (query: Query): Promise<Books[]> => {
+const getBooks = async (query: any): Promise<Books[]> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: {
@@ -86,6 +86,8 @@ const getBooks = async (query: Query): Promise<Books[]> => {
       author: query.author,
     },
   });
+
+  console.log(url,"url")
 
   // console.log("API URL:", URL);          // Log to ensure environment variable is set
   // console.log("Formatted URL:", url);     // Log the final URL
