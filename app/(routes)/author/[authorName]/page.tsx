@@ -10,7 +10,6 @@ export default async function AuthorPage({
 }) {
 
 const decodedAuthorName = params.authorName ? decodeURIComponent(params.authorName) : '';
-
   const authors = await getAuthors();
   const author = authors.find((author: any) => author.name === decodedAuthorName);
   console.log(author,"author is here")

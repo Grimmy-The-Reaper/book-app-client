@@ -81,6 +81,7 @@ const getBooks = async (query: any): Promise<Books[]> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: {
+      rating: query?.rating ? "true" : "false",
       genre: query.genre,
       isFeatured: query.isFeatured,
       author: query.author,

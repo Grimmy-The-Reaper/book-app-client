@@ -18,9 +18,10 @@ interface BookPageProps {
 const BookPage = async ({ params }: any) => {
   const book = await getBook(params.bookId);
 
-  console.log(book, "params");
 
-  const suggestedBooks = await getBooks({ author: book?.author });
+
+
+  const suggestedBooks = await getBooks({ author: book?.author,rating:true });
 
   const renderStars = (averageRating: number) => {
     const totalStars = 5;
